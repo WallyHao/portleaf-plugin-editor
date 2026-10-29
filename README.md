@@ -257,3 +257,7 @@ Electron 端到端测试会使用独立 Xvfb 显示，以及临时文件和配�
 | [测试指南](docs/testing.md)             | 测试分层、夹具、报告和验证流程       |
 | [性能说明](docs/performance.md)         | 资源策略、性能采样和可复现基准       |
 | [Linux 发布指南](docs/distribution.md)  | 打包、安装和运行依赖                 |
+
+## 许可证
+
+项目代码以 [MIT 许可证](LICENSE)发布。品牌图中的字形轮廓来自 [Maple Mono](https://github.com/subframe7536/maple-font)，使用 [SIL Open Font License 1.1](assets/branding/OFL.txt)；其他第三方依赖遵循各自的许可证。
