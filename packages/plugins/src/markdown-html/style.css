@@ -1,0 +1,43 @@
+.md-html {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.md-html h1,
+.md-html h2,
+.md-html h3,
+.md-html h4,
+.md-html h5,
+.md-html h6 {
+  margin: 0;
+  font: inherit;
+  font-weight: bold;
+  color: var(--accent);
+}
+.md-html p {
+  margin: 0.5em 0;
+}
+.md-html sub,
+.md-html sup {
+  font-size: inherit;
+  line-height: inherit;
+}
+.md-html img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.md-html pre {
+  white-space: pre-wrap;
+}
+.md-html table {
+  border-collapse: collapse;
+}
+.md-html td,
+.md-html th {
+  border: 1px solid var(--border);
+  padding: 0 1ch;
+}
+.md-html a {
+  cursor: pointer;
+}

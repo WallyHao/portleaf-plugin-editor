@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#app {
+  --row: 1.4em;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family, monospace);
+  font-size: var(--font-size, 14pt);
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--foreground, #d7d9d5);
+  background: var(--background, #171a1b);
+}
+button,
+input,
+textarea,
+pre {
+  font: inherit;
+  line-height: inherit;
+  color: inherit;
+  border-radius: 0;
+}
+button {
+  cursor: pointer;
+}
+[hidden] {
+  display: none !important;
+}
+.muted,
+.workspace-name {
+  color: var(--muted);
+}
+.topline,
+.statusline {
+  display: flex;
+  flex: 0 0 var(--row);
+  align-items: center;
+  gap: 2ch;
+  padding: 0 1ch;
+  white-space: nowrap;
+}
+.topline {
+  border-bottom: 1px solid var(--border);
+}
+.workspace-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.statusline {
+  border-top: 1px solid var(--border);
+}
+.mode {
+  color: var(--accent);
+  min-width: 7ch;
+}
+.filename {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.position {
+  color: var(--muted);
+}
+.workspace {
+  flex: 1;
+  min-height: 0;
+}
+.buffer {
+  position: relative;
+  height: 100%;
+}
+.cm-editor {
+  height: 100%;
+  font: inherit;
+}
+.cm-editor .cm-scroller {
+  font: inherit;
+  line-height: inherit;
+  overflow: auto;
+}
+.cm-editor .cm-content.cm-lineWrapping {
+  padding: var(--row) 1ch calc(4 * var(--row));
+  padding-right: calc(1ch + var(--gutter-width, 0px));
+  caret-color: var(--accent);
+}
+.cm-line {
+  padding: 0;
+}
+.cm-editor.cm-focused {
+  outline: none;
+}
+.cm-editor .cm-gutters {
+  background: var(--background);
+  color: var(--muted);
+  border: 0;
+  padding: 0 1ch 0 0;
+}
+.cm-gutterElement {
+  padding: 0 1ch !important;
+}
+.cm-cursor,
+.cm-dropCursor {
+  border-left-color: var(--accent) !important;
+}
+.cm-vimCursorLayer .cm-fat-cursor {
+  background: var(--foreground);
+  opacity: 0.65;
+}
+.cm-focused .cm-selectionBackground,
+.cm-selectionBackground,
+::selection {
+  background: var(--selection) !important;
+}
+.cm-panels {
+  background: var(--surface);
+  color: var(--foreground);
+}
+.cm-panel,
+.cm-dialog {
+  font: inherit;
+  padding: 0 1ch;
+  background: var(--surface);
+}
+.cm-panel input,
+.cm-dialog input {
+  font: inherit;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  outline: 0;
+}
+.cm-placeholder {
+  color: var(--muted);
+}
+.message {
+  position: absolute;
+  bottom: var(--row);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  color: var(--error);
+  padding: 0 1ch;
+  max-height: calc(4 * var(--row));
+  overflow: auto;
+}
+
+.recovery-panel {
+  position: fixed;
+  z-index: 100;
+  bottom: calc(var(--row) * 2);
+  left: 1ch;
+  right: 1ch;
+  padding: 1ch;
+  border: 1px solid var(--error);
+  background: var(--surface);
+  color: var(--foreground);
+}
+.recovery-panel p {
+  margin: 0 0 1ch;
+}
+.recovery-panel button {
+  margin-right: 2ch;
+}

@@ -1,0 +1,25 @@
+.picker.file-browser {
+  max-width: 100ch;
+  outline: 0;
+  z-index: 9;
+}
+.browser-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  height: calc(14 * var(--row));
+}
+.file-browser .browser-list,
+.file-browser .browser-preview {
+  max-height: none;
+  min-width: 0;
+  overflow: auto;
+}
+.file-browser .browser-preview {
+  border-top: 0;
+  border-left: 1px solid var(--border);
+}
+.browser-path {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

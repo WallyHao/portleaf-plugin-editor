@@ -1,0 +1,19 @@
+{
+  "name": "@portleaf/desktop",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@automerge/automerge": "3.5.0",
+    "@automerge/automerge-codemirror": "0.2.0",
+    "@automerge/automerge-repo": "2.5.1",
+    "@automerge/automerge-repo-network-messagechannel": "2.5.1",
+    "@codemirror/commands": "^6.10.4",
+    "@codemirror/state": "6.7.1",
+    "@codemirror/view": "^6.43.6",
+    "@portleaf/core": "workspace:*",
+    "@portleaf/data-patchwork": "workspace:*",
+    "@portleaf/plugins": "workspace:*",
+    "chokidar": "6.0.0",
+    "comlink": "4.4.2"
+  }
+}

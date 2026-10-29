@@ -1,0 +1,15 @@
+{
+  "name": "@portleaf/core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./appearance": "./src/appearance.ts",
+    "./ui.css": "./src/ui/style.css"
+  },
+  "dependencies": {
+    "@codemirror/state": "6.7.1",
+    "@codemirror/view": "^6.43.6",
+    "fuzzysort": "^3.1.0"
+  }
+}

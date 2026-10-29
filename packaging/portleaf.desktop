@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Portleaf
+Comment=Keyboard-driven text and Markdown editor
+Exec=portleaf %f
+Icon=text-editor
+Terminal=false
+Categories=Utility;TextEditor;
+MimeType=text/plain;text/markdown;application/pdf;image/png;image/jpeg;image/svg+xml;

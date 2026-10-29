@@ -1,0 +1,64 @@
+name: Engineering checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@v31
+      - name: Install pinned dependencies
+        run: nix develop --command pnpm install --frozen-lockfile
+      - name: Static checks
+        run: nix develop --command sh -eu -c 'pnpm check; pnpm format:check; nixfmt --check flake.nix'
+      - name: Component tests
+        run: nix develop --command pnpm test:unit
+      - name: Filesystem and process integration
+        run: nix develop --command pnpm test:integration
+      - name: Build
+        run: nix develop --command pnpm build
+      - name: Electron scenarios
+        run: nix develop --command pnpm test:e2e:existing
+      - name: Preserve Electron reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: source-validation
+          path: |
+            test-results/
+            playwright-report/
+          include-hidden-files: true
+      - name: Permit sandbox smoke on the ephemeral Ubuntu runner
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - name: Native renderer sandbox smoke
+        run: nix develop --command xvfb-run -a env PORTLEAF_SANDBOX=1 PORTLEAF_VALIDATION_LABEL=sandbox node scripts/validate.mjs e2e editing.spec.ts --grep 'Vim editing'
+      - name: Package application
+        run: nix develop --command pnpm package:existing
+      - name: Packaged application upgrade smoke
+        run: |
+          mkdir -p "$RUNNER_TEMP/portleaf-dist"
+          tar -xf release/*.tar.gz -C "$RUNNER_TEMP/portleaf-dist"
+          PORTLEAF_APP_PATH="$(find "$RUNNER_TEMP/portleaf-dist" -type d -path '*/share/portleaf' -print -quit)"
+          export PORTLEAF_APP_PATH
+          export PORTLEAF_VALIDATION_LABEL=packaged
+          nix develop --command xvfb-run -a node scripts/validate.mjs e2e distribution.spec.ts
+      - name: Preserve distribution and smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: distribution-and-smoke
+          path: |
+            release/
+            test-results/
+            playwright-report/
+          include-hidden-files: true

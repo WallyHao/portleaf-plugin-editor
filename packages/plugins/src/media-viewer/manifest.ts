@@ -1,0 +1,46 @@
+import type { Plugin } from '@portleaf/core';
+
+export const imageExtensions = [
+  'png',
+  'jpg',
+  'jpeg',
+  'gif',
+  'webp',
+  'avif',
+  'bmp',
+  'svg',
+  'ico',
+] as const;
+export const manifest = {
+  id: 'media-viewer',
+  apiVersion: 1,
+  fileViewer: { extensions: ['pdf', ...imageExtensions] },
+  commands: [
+    { id: 'media.open', title: 'Open PDF or image by path', label: 'View file', keys: 'fv' },
+    { id: 'media.next', title: 'Viewer: next page or image', label: 'Next page/image' },
+    { id: 'media.previous', title: 'Viewer: previous page or image', label: 'Previous page/image' },
+    { id: 'media.fit', title: 'Viewer: fit document to window', label: 'Fit window' },
+    { id: 'media.width', title: 'Viewer: fit document to width', label: 'Fit width' },
+    { id: 'media.actual', title: 'Viewer: actual size', label: 'Actual size' },
+    { id: 'media.zoom-in', title: 'Viewer: zoom in', label: 'Zoom in' },
+    { id: 'media.zoom-out', title: 'Viewer: zoom out', label: 'Zoom out' },
+    { id: 'media.rotate', title: 'Viewer: rotate clockwise', label: 'Rotate' },
+    { id: 'media.reload', title: 'Viewer: reload from disk', label: 'Reload file', keys: 'vr' },
+    { id: 'media.search', title: 'Viewer: search PDF text', label: 'Search PDF' },
+    { id: 'media.outline', title: 'Viewer: PDF outline or image list', label: 'Viewer index' },
+    { id: 'media.goto', title: 'Viewer: go to page or image', label: 'Go to page/image' },
+  ],
+  shortcuts: [
+    ['hjkl', 'Pan', 'media.fit'],
+    ['J/K · PgDn/PgUp', 'Next / previous PDF page', 'media.next'],
+    ['←/→ · [/] ', 'Previous / next image', 'media.next'],
+    ['gg / G / number G', 'First / last / numbered page or image', 'media.goto'],
+    ['+/- · i/o', 'Zoom in / out', 'media.zoom-in'],
+    ['a / s / =', 'Fit / width / actual size (PDF)', 'media.fit'],
+    ['r / R', 'Rotate / reload (PDF)', 'media.rotate'],
+    ['Ctrl+r / r', 'Rotate / reset (image)', 'media.rotate'],
+    ['/ · n/N', 'PDF search / next / previous result', 'media.search'],
+    ['Tab', 'PDF outline / image list', 'media.outline'],
+    ['q', 'Close viewer buffer', 'buffers.close'],
+  ].map(([keys, title, command]) => ({ scope: 'Viewer', keys, title, command })),
+} satisfies Plugin;

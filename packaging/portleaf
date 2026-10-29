@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+app_dir=$(CDPATH= cd -- "$(dirname -- "$0")/../share/portleaf" && pwd)
+exec "${PORTLEAF_ELECTRON:-electron}" "$app_dir" "$@"

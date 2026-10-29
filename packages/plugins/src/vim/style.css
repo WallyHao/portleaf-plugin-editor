@@ -1,0 +1,38 @@
+.cm-editor .cm-vim-panel {
+  font: inherit;
+  min-height: var(--row);
+  padding: 0 1ch;
+}
+.cm-editor .cm-vim-panel input {
+  font: inherit;
+}
+/* The upstream Ex template sets an inline font family. */
+.cm-editor .cm-vim-panel * {
+  font-family: var(--font-family) !important;
+}
+
+.leader-hint {
+  color: var(--muted);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+  padding: 0;
+  overflow: auto;
+  z-index: 5;
+}
+.leader-choices {
+  min-height: calc(6 * var(--row));
+  align-content: start;
+  padding: 0 1ch;
+}
+.leader-choices .shortcut-key {
+  min-width: 11ch;
+}
+.leader-paging {
+  padding: 0 1ch;
+  border-top: 1px solid var(--border);
+}

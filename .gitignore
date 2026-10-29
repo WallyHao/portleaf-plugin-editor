@@ -1,0 +1,30 @@
+# Dependencies and generated output
+node_modules/
+/dist/
+/release/
+/artifacts/
+/test-results/
+/playwright-report/
+coverage/
+*.tsbuildinfo
+*.cpuprofile
+*.log
+
+# Local environments and tooling
+/result
+/result-*
+.cache/
+.direnv/
+.env
+.env.*
+!.env.example
+/.agents/
+/.codex/
+/.aws/
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
